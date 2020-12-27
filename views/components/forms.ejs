@@ -1,0 +1,27 @@
+<section class="forms" id="forms">
+    <div class="container-fluid forms-container bg-primary  d-flex flex-column justify-content-center shadow"
+        style="height: 350px;">
+        <div class="container-lg bg-light rounded" style="height: 300px;">
+            <form action="/add" method="POST">
+                <!-- Enter email -->
+                <div class="input-group my-3 w-50 mx-auto">
+                    <span class="input-group-text" id="basic-addon1">Email</span>
+                    <input type="text" name="email" id="email" placeholder="Enter Your Email" class="form-control"
+                        aria-label="email" aria-describedby="basic-addon1">
+                </div>
+                <!-- Enter topic -->
+                <div class="input-group my-3 w-50 mx-auto">
+                    <span class="input-group-text" id="basic-addon1">Topic</span>
+                    <input type="text" name="topic" id="topic" placeholder="Enter Your Topic" class="form-control"
+                        aria-label="topic" aria-describedby="basic-addon1">
+                </div>
+                <!-- Enter text -->
+                <div class="input-group my-3 w-50 mx-auto form-group">
+                    <textarea class="form-control" name="textArea" placeholder="Enter Your Text" id="textArea" rows="3" style="height:100px;"></textarea>
+                </div>
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-dark">Submit</button>
+            </form>
+        </div>
+    </div>
+</section>
