@@ -1,0 +1,25 @@
+<section class="forms" id="forms">
+    <div class="container-fluid forms-container bg-primary  d-flex flex-column justify-content-center shadow"
+        style="height: 400px;">
+        <div class="container-lg bg-light rounded d-flex flex-column justify-content-center" style="height: 200px;">
+            <div class="text-center">
+                <h1><%=results[0].topic%></h1>
+                <h2><%=results[0].email%></h2>
+                <h3><%=results[0].text%></h3>
+            </div>
+        </div>
+        <div>
+            <form action='/answer/<%=id%>' method="post">
+                <!-- Enter text -->
+                <div class="input-group my-3 w-50 mx-auto form-group">
+                    <textarea class="form-control" name="textArea" placeholder="Enter Your Text" id="textArea" rows="3"
+                        style="max-height:100px;"></textarea>
+                    <button type="submit" class="btn submit-button btn-dark">Submit</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</section>
+
+<script src="/js/script.js" type="text/javascript"></script>
