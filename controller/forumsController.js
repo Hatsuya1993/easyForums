@@ -31,8 +31,7 @@ const deleteId = (req, res) => {
     const {
         id
     } = req.params
-    let sql = `DELETE FROM forumDetails WHERE id = ${id}`
-    db.query(sql, (err, results) => {
+    db.query(`DELETE FROM answer WHERE forumId = ${id}; DELETE FROM forumDetails WHERE id = ${id}`, (err, results) => {
         if (err) {
             throw err
         }
@@ -44,16 +43,49 @@ const forumId = (req, res) => {
     const {
         id
     } = req.params
-    // let sql = `SELECT * FROM forumDetails WHERE id = ${id}`
-    let sql =  `SELECT email, topic, text, answer FROM forumdetails INNER JOIN answer WHERE forumId = ${id}`
+    const defaultVal = [{
+        email: '',
+        topic: 'No Answers Yet',
+        text: '',
+        answer: ''
+    }]
+    let sql = `SELECT email, topic, text, answer FROM forumdetails INNER JOIN answer WHERE forumdetails.id = answer.forumId AND forumdetails.id = ${id}`
+
     db.query(sql, (err, results) => {
         if (err) {
             throw err
         }
-        console.log(id, results)
+        if(results.length){
+        res.render('forumPage', {
+            results : results,
+            id,
+            showText: false
+        })
+        }
+        res.render('forumPage', {
+            results : defaultVal,
+            id,
+            showText: false
+        })
+    })
+
+}
+
+const showId = (req, res) => {
+    const {
+        id
+    } = req.params
+
+    let sql = `SELECT * FROM forumDetails WHERE id = ${id}`
+
+    db.query(sql, (err, results) => {
+        if (err) {
+            throw err
+        }
         res.render('forumPage', {
             results,
-            id
+            id,
+            showText: true
         })
     })
 
@@ -69,7 +101,7 @@ const answerForum = (req, res) => {
         if (err) {
             throw err
         }
-        res.redirect(`/forum/${id}`)
+        res.redirect(`/`)
     })
 }
 
@@ -78,5 +110,7 @@ module.exports = {
     add,
     deleteId,
     forumId,
-    answerForum
+    answerForum,
+    showId,
+    
 }
