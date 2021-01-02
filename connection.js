@@ -10,7 +10,7 @@ dotenv.config({
 const db = mysql.createConnection({
     host:'localhost',
     user:'root',
-    password:process.env.password,
+    password:process.env.PASSWORD,
     database:'forums',
     multipleStatements:true
 })
